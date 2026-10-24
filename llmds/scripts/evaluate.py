@@ -17,14 +17,6 @@ def count_tokens(text, model):
 
     return len(encoding.encode(text))
 
-# def count_tokens(text, model):
-    #   """Try this if the above one doesn't work """
-#     if model in ["gpt-4.1-mini","gpt-4.1-nano"]:
-#         encoding = tiktoken.get_encoding("cl100k_base")
-#     else:
-#         encoding = tiktoken.encoding_for_model(model)
-
-#     return len(encoding.encode(text))
 
 def compute_input_metrics(data,infile,models):
 
@@ -228,12 +220,7 @@ def main(args):
 
         item.auto_image = 1 if item.image_id is not None else 0
         item.require_image = 1 if item.auto_image==1 or all(item in concepts_with_images for item in item.concepts) else 0
-        # item.code_execute 
 
-        # if item.require_image == 1:
-        #     pass
-        # else:
-        #     pass
     #-----add text similarity
     id_jaccard_values = {}
 
