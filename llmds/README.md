@@ -1,8 +1,6 @@
 # Overview
 
-This folder contains the core code for the GAIL project. The design was intended to 
-be relatively modular so that new data science questions can be trained or 
-implemented by the LLM agents. We provide a brief overview of each of the folders/files:
+This folder contains the core code. The design was intended to be relatively modular so that new data science questions can be trained or implemented by the LLM agents. We provide a brief overview of each of the folders/files:
 
 - params: Contains the functions
     - 'load_params': Reads questions from jsonl files and keep in SimpeNamespace.

@@ -224,7 +224,7 @@ def main(args):
   # image_folders = glob.glob(os.path.join(args.input_folder, '*_image'))
   
   # Load the input of question file
-  # question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
+  # question_input = format_namespace('DA-tasks-questions.jsonl')
   questions = find_question_basics(args.input_folder)
 
   for text_file in infiles:

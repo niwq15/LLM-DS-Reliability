@@ -78,7 +78,7 @@ if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="Run experiment groups with assistants.")
   
   args = SimpleNamespace(
-    data=format_namespace('GAIL-DA-tasks-questions-clean.jsonl'),
+    data=format_namespace('DA-tasks-questions.jsonl'),
     instruction="""You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
   Answer each question. You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
   """,

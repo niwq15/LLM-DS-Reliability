@@ -27,7 +27,7 @@ filenames = data_name_mapping.values()
 input_metrics='Simulations/metrics/input_metrics.jsonl'
 
 # Load the input of question file
-question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
+question_input = format_namespace('DA-tasks-questions.jsonl')
 
 Qs_dict = {
     'aeroplane': [56,57,58],

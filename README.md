@@ -1,6 +1,23 @@
 # Study the reliability of LLMs on Data Science Tasks
 
-----------------------------------------------------
+## About
+The toolkit shows how to implement multi-round simulations on individual or sequential questions under different settings of model choices, temperatures, prompts, and input datasets. 
+
+## Main Structure
+- data/: contains the question data file and the corresponding answer file.
+- llmds/: the core code folder to apply LLM agents to solve data science tasks.
+- simulations/: the folder of simulation outcomes, one jsonl file collects the outcomes for one dataset and one configuration (a model and a temperature).
+- analysis/: extract from the outcome files from the 'simulations/' folder and then conduct instability analysis and verbosity analysis.
+
+
+## Installation 
+
+```
+# Required dependencies
+pip install pandas numpy 
+```
+
+
 
 ## Our Experimental setting 
 
@@ -30,11 +47,11 @@
     - Dimensionality Reductions (PCA)
 
 - Statistical Hypothesis testing related questions
-- Bayesian regression
+- Bayesian Regression
 
 ### Possible format of the prompts
 
-Question List: GAIL-DA-tasks-questions.jsonl file but will be expanded
+Question List: DA-tasks-questions.jsonl file but will be expanded
 
 - **id**: Unique identifier for each question.
 - **question**: The description of the data analysis question.
