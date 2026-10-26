@@ -340,7 +340,7 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser()
 
   parser.add_argument('--input_folder', type=str, help='Folder path of the collection of outputs for the dataset.')
-  parser.add_argument('--path', type=str, help='Path to store the metrics.',default='Simulations/metrics')
+  parser.add_argument('--path', type=str, help='Path to store the metrics.',default='simulations/metrics')
   parser.add_argument('--dataname',type=str,help='Dataset name')
   parser.add_argument('--model',type=str,help='Model choice, e.g. gpt-4o')
   parser.add_argument('--modelname',type=str,help='Model, e.g. gpt_4o')

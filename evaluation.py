@@ -10,9 +10,9 @@ import os
 import time
 from types import SimpleNamespace
 
-outcome_path = 'Simulations/output'
-outpath = 'Simulations/metrics'
-outpath_code = 'Simulations/code_record'
+outcome_path = 'simulations/output'
+outpath = 'simulations/metrics'
+outpath_code = 'simulations/code_record'
 
 temperature = '1'
 model = "gpt-4o"
@@ -24,7 +24,7 @@ other_sequential = True
 
 datanames = data_name_mapping.keys()
 filenames = data_name_mapping.values()
-input_metrics='Simulations/metrics/input_metrics.jsonl'
+input_metrics='simulations/metrics/input_metrics.jsonl'
 
 # Load the input of question file
 question_input = format_namespace('DA-tasks-questions.jsonl')

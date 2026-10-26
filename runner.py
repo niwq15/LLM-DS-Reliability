@@ -20,7 +20,7 @@ from types import SimpleNamespace
 # dinput = inputs[filename]
 
 # Generate the metrics from the input set of DS questions. 
-#compute_input_metrics(data,"Simulations/metrics/input.jsonl",model_choice)
+#compute_input_metrics(data,"simulations/metrics/input.jsonl",model_choice)
 
 openai_key="YOUR_API_KEY"
 
@@ -35,7 +35,7 @@ def main(args):
 
         filename = data_name_mapping[dataname]
         file_id = fileid_name_mapping[dataname]
-        outfolder = f'Simulations/output/{dataname}/Q{args.Qs[0]}_{model.replace("-","_")}_{temperature}_code_interpreter_{args.with_code_interpreter}'
+        outfolder = f'simulations/output/{dataname}/Q{args.Qs[0]}_{model.replace("-","_")}_{temperature}_code_interpreter_{args.with_code_interpreter}'
         if not os.path.exists(outfolder):
           os.makedirs(outfolder, exist_ok=True)
 
