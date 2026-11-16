@@ -1,4 +1,3 @@
-<div align="center">
 # Are LLMs Ready for Data Science?
 
 <!-- ===================== [REQUIRED] 3. TL;DR + TEASER ===================== -->
@@ -95,7 +94,7 @@ LLM-DS-Reliability/
 ├── simulations/metrics                   # metric tables
 ├── analysis/                          # reproduction scripts
 |   ├── run_score/                     # instability scores
-|   ├── scripts                        # instability scores
+|   ├── ...                            # code for analysis
 ```
 <!-- TODO(structure): update to match the real tree (`tree -L 2`). -->
 
@@ -105,7 +104,6 @@ LLM-DS-Reliability/
 ## 📝 Citation
 
 If you find this work useful, please cite:
-
 @misc{ni2026llmds,
   title         = {One Run Is Not Enough: A Monte Carlo Protocol for Evaluating LLM Reliability on Data Science Tasks},
   author        = {Ni, W., Evkaya, O. and de Carvalho, M.},
