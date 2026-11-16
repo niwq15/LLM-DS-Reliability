@@ -1,24 +1,5 @@
 """Step 2: score each run, then measure how much the score varies
 across rounds of the same question.
-
-2.1  Read the csv from extract_run_features.py, transform the features, then
-     compute a total score per run from SCORE_FORMULA:
-       - accuracy: null -> 0
-       - code_execute: 0/1/2 -> code_execute / 2 (0, 0.5, 1)
-       - score = complete_ratio + accuracy + code_execute   (default formula)
-     The formula is a pandas expression over the run columns, so it can be
-     changed here or with --formula, e.g.
-       --formula "complete_ratio + 2 * accuracy + code_execute - 0.1 * runtime"
-
-2.2  runs = the scored dataframe. For each (macro_concept, level), over all
-     runs of all its questions: the mean score, the population std (ddof=0)
-     of score, std_norm (std min-max normalized to [0, 1] over all groups),
-     and which question ids are in the group (ids, n_ids, n_runs).
-     macro_concept (from concept_map, added by extract_run_features.py) is
-     split so a question under several macro concepts counts in each of them.
-
-    python score_runs.py --features run_scores/run_features.csv --outdir run_scores
-
 """
 
 import argparse

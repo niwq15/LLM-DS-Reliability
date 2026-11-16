@@ -1,29 +1,4 @@
 """Step 1.2: Proportion of difficulty levels per concept, from a questions jsonl file.
-
-Each line of the input has (at least) a "concepts" list and a "level" string.
-A question tagged with several concepts counts once towards each of them.
-Concepts are also grouped into macro concepts via concept_map; concepts
-missing from the map go to UNMAPPED_MACRO. A question counts once per macro
-concept even if several of its concepts map to the same one.
-
-    python plot_concept_levels.py --file questions.jsonl --outdir concept_plots
-
-A second grouping, macro2_concept, maps each macro concept through macro_map
-(macro concepts not in macro_map keep their name).
-
-Writes, per grouping (concept, macro_concept, macro2_concept), <outdir>/<grouping>_levels.csv
-(the group x level proportions) and <outdir>/<grouping>_levels.png / .pdf
-(100% stacked bar chart). Questions that land in UNMAPPED_MACRO are listed in
-<outdir>/other_questions.csv (id, level, all concepts, the unmapped ones) so
-concept_map can be checked and extended.
-
-<outdir>/question_ids_by_block.csv (and .tex, a booktabs table for the paper)
-lists the question ids in each block of task type (macro concept) x
-difficulty level, with per-level counts and a row total. Ids that already
-appear in a metrics jsonl file (--metrics-dir, default metrics/) are
-highlighted in ACM dark blue in the .tex and counted in the csv's m_<level> / in_metrics columns.
-
-    python plot_concept_levels.py --metrics-dir metrics .metrics
 """
 
 import argparse

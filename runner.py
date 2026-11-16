@@ -12,17 +12,7 @@ import argparse
 from types import SimpleNamespace
 
 
-# inputs = {}
-# for dataset in set_datasets:
-
-#     inputs[dataset] = input_dataset(data,dataset)
-
-# dinput = inputs[filename]
-
-# Generate the metrics from the input set of DS questions. 
-#compute_input_metrics(data,"simulations/metrics/input.jsonl",model_choice)
-
-openai_key="YOUR_API_KEY"
+openai_key="YOUR_API_KEY" #OPENAI_API_KEY
 
 client=OpenAI(
     api_key=openai_key

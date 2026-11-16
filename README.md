@@ -1,68 +1,63 @@
-# Study the reliability of LLMs on Data Science Tasks
+<div align="center">
+# Are LLMs Ready for Data Science?
 
-## About
-The toolkit shows how to implement multi-round simulations on individual or sequential questions under different settings of model choices, temperatures, prompts, and input datasets. 
+<!-- ===================== [REQUIRED] 3. TL;DR + TEASER ===================== -->
+## 💡 TL;DR
 
-## Main Structure
-- data/: contains the question data file and the corresponding answer file.
-- llmds/: the core code folder to apply LLM agents to solve data science tasks.
-- simulations/: the folder of simulation outcomes, one jsonl file collects the outcomes for one dataset and one configuration (a model and a temperature).
-- analysis/: extract from the outcome files from the 'simulations/' folder and then conduct instability analysis and verbosity analysis.
+Existing data-science benchmarks score an LLM **a few runs per question**. But whether the same prompt can produce the same answer, code and charts remains unexplored. To study the reliability of LLM-generated responses, we ask each question **100 times** and measure how much the answers vary. The toolkit shows how to implement multi-round simulations on individual or sequential questions under different settings of model choices, temperatures, prompts, and input datasets. 
 
+---
 
-## Installation 
+<!-- ===================== [RECOMMENDED] 2. NEWS ===================== -->
+## 🔥 News
 
-```
+<!-- Newest first. Only list confirmed events; update the venue line after notification. -->
+<!-- Add after notification (4 Jan 2027): - **[2027-01]** 🎉 Paper accepted at **TheWebConf 2027**. -->
+<!-- During review, use the arXiv BibTeX entry in the Citation section and do not name the venue. -->
+
+- **[2026-11-06]** 📄 Preprint released on [arXiv](https://arxiv.org/abs/2611.09729).
+- **[2026-11]** 🎤 Preliminary results presented at **UKAIRS 2026**, Edinburgh (Emerging Research Track).
+- **[2026-11]** 🗂️ Benchmark and evaluation code released.
+
+<!-- [📄 Paper](TODO) ·  -->
+
+[📊 Benchmark](#-data) · [🚀 Quick Start](#-quick-start) · [📈 Results](#-main-results) · [📝 Citation](#-citation) · [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+<!-- ===================== [REQUIRED] 4. HIGHLIGHTS ===================== -->
+## ✨ Highlights
+
+- **🎲 Monte Carlo consistency framework** — each prompt is issued 100× under identical settings, giving an empirical response *distribution* instead of a point estimate.
+<!-- - **📏 Normalized instability metrics** for mixed outputs:
+  - binary correctness → Bernoulli variance
+  - categorical answers → normalized Shannon entropy
+  - numeric answers → variance normalized by Popoviciu's bound -->
+- **📚 Curriculum-grounded benchmark** — 100 questions from university-level statistics courses, 15 datasets, 6 task categories, 3 difficulty levels, organized by the De Bie et al. data-science taxonomy.
+- **🔗 Sequential-QA analysis** — follow-up questions (e.g. `14 → 14.1 → 14.2`) reveal how early errors propagate.
+- **🛠️ Actionable prompt guidance** derived from task-specific failure patterns.
+
+<!-- TODO(highlights): add 1 bullet with your headline NUMBER, e.g.
+     "**Key finding:** TODO% of questions that are 'solved' on a single run fail in ≥ TODO% of repeated runs." -->
+
+---
+
+<!-- ===================== [REQUIRED] 6. INSTALLATION ===================== -->
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/niwq15/LLM-DS-Reliability.git
+cd LLM-DS-Reliability
+
 # Required dependencies
 pip install pandas numpy 
 ```
 
+Set your API key:
 
-
-## Our Experimental setting 
-
-### Change on the settings
-
-- Fixing the prompt and the other details, use (i) model = "gpt-4o", (ii) model = "gpt-4o-mini", (iii) model = "4o-mini", also one option for vanilla LLM like without code interpreter can be tried (cheapest option for testing)
-- Fixing the prompt and the model, use different temperature values by tweaking the "temperature = default" value, it can be like (0.2, 0.5, 1.0, 1.5) based on its original range
-- Fixing the prompt and all other settings, use the prompt with programming language constraint or not such as "constraint: "Using the built-in functions and suitable R packages"' in the prompt or system instruction
-
-## Our Task types and related questions at different levels 
-
-- Data Undertanding and Wrangling
-- Data Cleaning, Pre-processing and Transformations
-- Data Summary Statistics and Interpretations
-  
-- Data Visualization - EDA 
-
-- Statistical Models under supervised , unsupervised learning type of models
-  - Supervised Learning 
-    - Linear Regression modeling
-    -  Variations of regression (Lasso or Ridge)
-    - Classification models such as Logistic Regression model
-    - Tree based model
-    - Model comparison type questions
-  - Unsupervised Learning
-    - Clustering methods
-    - Dimensionality Reductions (PCA)
-
-- Statistical Hypothesis testing related questions
-- Bayesian Regression
-
-### Possible format of the prompts
-
-Question List: DA-tasks-questions.jsonl file but will be expanded
-
-- **id**: Unique identifier for each question.
-- **question**: The description of the data analysis question.
-- **concepts**: The concepts involved in the question.
-- **format**: The format requirements for the output.
-- **file_name**: The file name of the corresponding csv file.
-- **level**: The difficulty level for each question.
-
-Additional details like constraints: The constraints on the type of programming (using R instead of Python) or similar ones can be considered!
-We will gather feedback from the audience for the **concepts** and the **level** information by asking them randomly allocated set of questions.
-
+```bash
+export OPENAI_API_KEY="sk-..."
+```
 
 ## How to conduct the experiments for new dataset or questions
 
@@ -79,3 +74,65 @@ If the questions are sequentially related, try the alternative **sequential_ques
 
 After obtaining the experimental outcomes, we provide a single file (*evaluation.py*) that can help to collect results
 and make evaluation. The adjustable setting is the same as above, except the instruction being no longer used. 
+
+---
+
+<!-- ===================== [RECOMMENDED] 11. REPO STRUCTURE ===================== -->
+## 🗂️ Repository Structure
+
+```text
+LLM-DS-Reliability/
+├── data/
+│   ├── DA-tasks-questions.jsonl        # benchmark questions
+│   ├── DA-tasks-responses.jsonl        # benchmark reference answers
+│   └── datasets/                       # 15 source datasets (add later)
+├── llmds
+|   ├── scripts/             
+|       ├── automation.py              # Monte Carlo querying
+│       ├── collect_result.py          # extract metrics per iteration
+│       └── evaluate.py                # evaluate metrics 
+|   └── READMD.md            
+├── simulations/metrics                   # metric tables
+├── analysis/                          # reproduction scripts
+|   ├── run_score/                     # instability scores
+|   ├── scripts                        # instability scores
+```
+<!-- TODO(structure): update to match the real tree (`tree -L 2`). -->
+
+---
+
+<!-- ===================== [REQUIRED] 13. CITATION ===================== -->
+## 📝 Citation
+
+If you find this work useful, please cite:
+
+@misc{ni2026llmds,
+  title         = {One Run Is Not Enough: A Monte Carlo Protocol for Evaluating LLM Reliability on Data Science Tasks},
+  author        = {Ni, W., Evkaya, O. and de Carvalho, M.},
+  year          = {2026},
+  eprint        = {2611.09729},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2611.09729}
+}
+
+---
+
+<!-- ===================== [RECOMMENDED] 15. ACKNOWLEDGEMENTS ===================== -->
+## 🙏 Acknowledgements
+
+This work was funded by the **Edinburgh Generative AI Lab (GAIL)**, University of Edinburgh.
+<!-- TODO(funding source / grant number). TODO(thank course instructors who provided questions, if applicable). -->
+
+---
+
+<!-- ===================== [REQUIRED] 16. CONTACT ===================== -->
+## 📬 Contact
+
+Questions and issues: open a [GitHub Issue](https://github.com/niwq15/GAIL-DS-project-Analysis/issues).
+
+<!-- [OPTIONAL] Star history — only worth adding once the repo has some stars -->
+<!--
+## ⭐ Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=TODO-user/TODO-repo&type=Date)](https://star-history.com/#TODO-user/TODO-repo&Date)
+-->

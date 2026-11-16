@@ -1,31 +1,4 @@
 """Relationship between verbosity_ratio_tokens (y) and verbosity_ratio_words (x).
-
-Reads run_scores/run_scores.csv (one row per source_file x id x round) and
-fits the same models on two subsets:
-
-  filtered: model = MODEL and temperature = TEMPERATURE (default gpt-4o, 1.0)
-  all:      every run in the file
-
-Models (per subset):
-  1. Correlation: Pearson on the raw ratios, Pearson on log ratios, Spearman.
-  2. Linear OLS on the raw ratios:      y = a + b x
-  3. Log-log OLS (main model):          log y = a + b log x
-     b is an elasticity: x 1% higher -> y about b% higher; b = 1 means the
-     two ratios are proportional (y = e^a x). The ratios are positive and
-     right-skewed, so the log scale keeps a few long answers from dominating.
-  4. Mixed model on the log scale with a random intercept per question,
-     because the rounds of one question are repeated measurements.
-OLS standard errors are cluster-robust by question (dataset + id), for the
-same reason. On "all", a log-log model with a config interaction
-(log x * config) tests whether the slope differs between model/temperature
-configs (Wald test).
-
-    python verbosity_relation.py
-    python verbosity_relation.py --model gpt-4o --temperature 1 --runs run_scores/run_scores.csv
-
-Writes <outdir>/verbosity_relation_summary.csv, verbosity_relation_report.txt
-and, per subset, verbosity_relation_<subset>.png / .pdf (log-log scatter with
-the fitted line, and residuals).
 """
 
 import argparse

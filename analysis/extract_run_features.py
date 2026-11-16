@@ -1,36 +1,4 @@
 """Step 1: extract per-run features from a set of metrics jsonl files.
-
-Each jsonl line is one run (id x round). From every file we keep RUN_FEATURES,
-add a source_file column (so the same id from different files, e.g. different
-models, stays distinguishable), then stack all files into one dataframe and
-save it as csv.
-
-    python extract_run_features.py                          # every metrics/*.jsonl
-    python extract_run_features.py --files metrics/a.jsonl metrics/b.jsonl
-    python extract_run_features.py --out run_scores/run_features.csv
-
-A feature missing from a file (e.g. accuracy) is kept as an empty column and
-reported, rather than failing the whole run. concepts (a list) is written as a
-"; "-joined string, and complete_ratio logged as completed/failed becomes 1/0.
-
-A macro_concept column is added from concept_map in plot_concept_levels.py
-({"concept": "macro concept"}): the "; "-joined distinct macro concepts of the
-question's concepts, with concepts missing from the map as UNMAPPED_MACRO.
-
-Before the csv is written, two manual corrections are applied per file:
-  1. ID_REMAP renumbers ids that clash with other files (laptop_data_cleaned
-     uses 0, 1, 2, which already exist; they become 46, 47, 48);
-  2. QUESTION_FIXES sets level and/or macro_concept for questions whose jsonl
-     records are wrong or incomplete (e.g. no level).
-Also kept per run: tokens (output tokens) and input_tokens (the
-input_tokens_<model> field matching the model in the file name, if any).
-
-model and temperature are read from the file name, {dataname}_{model}_{temperature}.jsonl:
-  aeroplane_gpt_4o_1.jsonl          -> model gpt-4o,       temperature 1.0
-  evals_gpt_4.1_mini_0.2.jsonl      -> model gpt-4.1-mini, temperature 0.2
-(an optional _no_CodeInterp suffix after the temperature is ignored here).
-macro2_concept maps macro_concept through macro_map (plot_concept_levels.py),
-after QUESTION_FIXES, keeping a macro concept's own name if it is not in the map.
 """
 
 import argparse

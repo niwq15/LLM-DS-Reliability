@@ -1,31 +1,4 @@
 """Step 3: Heatmap of score_std.csv: macro concept x difficulty level.
-
-Rows are macro concepts (long labels read best on the y-axis), columns are
-levels in easy -> medium -> hard order, and each cell is colored by a value
-column (std_norm by default) on a pale -> ACM blue ramp. Each cell shows the
-value and n (the number of question ids behind it); a missing combination is
-drawn as a gray "-" cell. The figure is sized for one ACM column. The ids of
-each block are in score_std.csv and block_ids_in_metrics.csv; --show-ids also
-prints them in the cells (full ACM text width, for a figure* or a check).
-
-Row order: ROW_ORDER below (or --order); macro concepts not listed follow,
-sorted by mean value, with Other last unless placed explicitly. An empty
-ROW_ORDER sorts every row by mean value.
-
-    python plot_score_std.py --file run_scores/score_std.csv --outdir run_scores
-    python plot_score_std.py --value mean        # any numeric column
-    python plot_score_std.py --order "Data Understanding" "Data Summary" PCA
-    python plot_score_std.py --show-ids          # wide version with ids in cells
-    python plot_score_std.py --file run_scores/score_std_macro2.csv   # one version only
-
-By default both versions are drawn: score_std.csv (macro_concept rows) ->
-score_<value>_heatmap.*, and score_std_macro2.csv (macro2_concept rows, order
-ROW_ORDER_MACRO2) -> score_<value>_heatmap_macro2.*.
-
-Writes <outdir>/score_<value>_heatmap.png / .pdf (--show-ids:
-score_<value>_heatmap_ids.png / .pdf) and <outdir>/block_ids_in_metrics.csv, the
-ids of each block that already appear in the jsonl files of --metrics-dir
-(default .metrics/).
 """
 
 import argparse
