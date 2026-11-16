@@ -78,7 +78,7 @@ if __name__ == "__main__":
     Qs=[56],
     sequential=False,
     with_code_interpreter=False,
-    vector_store_id='vs_6881c6c49494819185527bbb078f62b3',
+    vector_store_id='',
     ks=[0], # if non-sequential
     # ks=0, # if sequential
     K=100

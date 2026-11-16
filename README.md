@@ -20,7 +20,7 @@ Existing data-science benchmarks score an LLM **a few runs per question**. But w
 
 <!-- [📄 Paper](TODO) ·  -->
 
-[📊 Benchmark](#-data) · [🚀 Quick Start](#-quick-start) · [📈 Results](#-main-results) · [📝 Citation](#-citation) · [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
