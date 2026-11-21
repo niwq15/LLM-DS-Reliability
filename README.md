@@ -14,8 +14,8 @@ Existing data-science benchmarks score an LLM **a few runs per question**. But w
 <!-- Add after notification (4 Jan 2027): - **[2027-01]** 🎉 Paper accepted at **TheWebConf 2027**. -->
 <!-- During review, use the arXiv BibTeX entry in the Citation section and do not name the venue. -->
 
+- **[2026-11-25]** 🎤 Preliminary results will be presented at **UKAIRS 2026**, Edinburgh (Emerging Research Track).
 - **[2026-11-06]** 📄 Preprint released on [arXiv](https://arxiv.org/abs/2611.09729).
-- **[2026-11]** 🎤 Preliminary results presented at **UKAIRS 2026**, Edinburgh (Emerging Research Track).
 - **[2026-11]** 🗂️ Benchmark and evaluation code released.
 
 <!-- [📄 Paper](TODO) ·  -->
