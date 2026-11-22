@@ -1,0 +1,7 @@
+# Python >= 3.9.
+pandas>=2.1        
+numpy     
+matplotlib>=3.7   
+scipy>=1.10       
+PyYAML>=6.0        # analysis/config.yaml
+statsmodels>=0.14  # verbosity_relation.py (OLS, mixed model)

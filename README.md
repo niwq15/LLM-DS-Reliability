@@ -1,10 +1,11 @@
 # Are LLMs Ready for Data Science?
 
 <!-- ===================== [REQUIRED] 3. TL;DR + TEASER ===================== -->
-## 💡 TL;DR
+## 💡 Overview
 
 Existing data-science benchmarks score an LLM **a few runs per question**. But whether the same prompt can produce the same answer, code and charts remains unexplored. To study the reliability of LLM-generated responses, we ask each question **100 times** and measure how much the answers vary. The toolkit shows how to implement multi-round simulations on individual or sequential questions under different settings of model choices, temperatures, prompts, and input datasets. 
 
+⭐ If you like this project, please support it by giving it a star!
 ---
 
 <!-- ===================== [RECOMMENDED] 2. NEWS ===================== -->
@@ -47,18 +48,12 @@ Existing data-science benchmarks score an LLM **a few runs per question**. But w
 ```bash
 git clone https://github.com/niwq15/LLM-DS-Reliability.git
 cd LLM-DS-Reliability
-
-# Required dependencies
-pip install pandas numpy 
-```
-
-Set your API key:
-
-```bash
+pip install -r requirements.txt
+# Set your API key:
 export OPENAI_API_KEY="sk-..."
 ```
 
-## How to conduct the experiments for new dataset or questions
+### 📖 Simulation: How to conduct experiments for new dataset or questions
 
 To run multi-round experiments on a selected set of questions specific to one dataset, we provide a single file 
 (*runner.py*) that can accommodate both independent questions and sequential questions. The adjustable setting is 
@@ -71,9 +66,35 @@ To run multi-round experiments on a selected set of questions specific to one da
 If all the questions are independent, try the function **multi_round_assistant**.
 If the questions are sequentially related, try the alternative **sequential_question_assistant**.
 
-After obtaining the experimental outcomes, we provide a single file (*evaluation.py*) that can help to collect results
-and make evaluation. The adjustable setting is the same as above, except the instruction being no longer used. 
+After obtaining the experimental outcomes, you can use (*evaluation.py*) to collect results and make evaluation. The adjustable setting is the same as above, except the instruction being no longer used. 
 
+```bash
+python runner.py --datanames aeroplane --models gpt-4o-mini --temperatures 1 --Qs 56 --sequential False --with_code_interpreter False --vector_store_id ... --ks 0 # one example
+```
+
+### 📖 Analysis
+
+The code in *analysis/* is used to analyse the simulation outcomes (several examples can be found in the folder *simulations/metrics/*). The following step outputs the main result files, run_features.csv, run_scores.csv. For easy use, we already share the local version in *analysis/run_scores/*. 
+
+
+```bash
+# Preliminary result processing
+python plot_concept_levels.py --metrics-dir .metrics   # Section 1，含 macro2_concept_levels.png
+python extract_run_features.py                         # add the parameters of model、temperature、macro2_concept 
+# Final score calculation
+python score_runs.py                        # generate score_std.csv for gpt-4o (default)
+python score_runs.py --model gpt-4.1-mini   # another model
+python score_runs.py --model all            # every model, as before
+# Plotting score distribution and heatmaps
+python plot_score_std.py                             
+# Comparison across models
+python plot_config_compare.py model --source aeroplane --id 9 --temperature 1 --features score accuracy
+# Comparison across temperatures
+python plot_config_compare.py temperature --source evals --id 21 --model gpt-4.1-mini --features tokens --stats median   # only ask medium values and IQR
+# Explore token verbosity vs. word token verbositys
+python verbosity_relation.py      # default configuration: model gpt-4o, temperature 1
+python verbosity_relation.py --model gpt-4.1-mini --temperature 1   # another configuration
+```
 ---
 
 <!-- ===================== [RECOMMENDED] 11. REPO STRUCTURE ===================== -->
@@ -85,6 +106,9 @@ LLM-DS-Reliability/
 │   ├── DA-tasks-questions.jsonl        # benchmark questions
 │   ├── DA-tasks-responses.jsonl        # benchmark reference answers
 │   └── datasets/                       # 15 source datasets (add later)
+├── requirements.txt                    # required dependencies
+├── runner.py                           # run experiments over 100 times
+├── evaluation.py                       # collect results and make initial evaluation
 ├── llmds
 |   ├── scripts/             
 |       ├── automation.py              # Monte Carlo querying
@@ -94,7 +118,12 @@ LLM-DS-Reliability/
 ├── simulations/metrics                   # metric tables
 ├── analysis/                          # reproduction scripts
 |   ├── run_score/                     # instability scores
-|   ├── ...                            # code for analysis
+|   ├── plot_concept_levels.py         # code for analysis (same for below)
+|   ├── extract_run_features.py       
+|   ├── score_runs.py        
+|   ├── plot_score_std.py 
+|   ├── plot_config_compare.py 
+|   └── verbosity_relation.py  
 ```
 <!-- TODO(structure): update to match the real tree (`tree -L 2`). -->
 
