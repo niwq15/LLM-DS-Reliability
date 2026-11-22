@@ -5,7 +5,7 @@
 
 Existing data-science benchmarks score an LLM **a few runs per question**. But whether the same prompt can produce the same answer, code and charts remains unexplored. To study the reliability of LLM-generated responses, we ask each question **100 times** and measure how much the answers vary. The toolkit shows how to implement multi-round simulations on individual or sequential questions under different settings of model choices, temperatures, prompts, and input datasets. 
 
-⭐ If you like this project, please support it by giving it a star!
+### ⭐ If you like this project, please support it by giving it a star!
 ---
 
 <!-- ===================== [RECOMMENDED] 2. NEWS ===================== -->
@@ -140,7 +140,7 @@ If you find this work useful, please cite:
   eprint        = {2611.09729},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CL},
-  url           = {https://arxiv.org/abs/2611.09729}
+  url           = {https://arxiv.org/abs/2611.09729 }
 }
 
 ---
