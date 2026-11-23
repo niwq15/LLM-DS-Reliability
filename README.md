@@ -110,20 +110,24 @@ LLM-DS-Reliability/
 ├── runner.py                           # run experiments over 100 times
 ├── evaluation.py                       # collect results and make initial evaluation
 ├── llmds
-|   ├── scripts/             
-|       ├── automation.py              # Monte Carlo querying
-│       ├── collect_result.py          # extract metrics per iteration
-│       └── evaluate.py                # evaluate metrics 
-|   └── READMD.md            
+│   ├── scripts/             
+│   │   ├── automation.py              # Monte Carlo querying
+│   │   ├── collect_result.py          # extract metrics per iteration
+│   │   └── evaluate.py                # evaluate metrics 
+│   └── README.md                     
 ├── simulations/metrics                   # metric tables
 ├── analysis/                          # reproduction scripts
-|   ├── run_score/                     # instability scores
-|   ├── plot_concept_levels.py         # code for analysis (same for below)
-|   ├── extract_run_features.py       
-|   ├── score_runs.py        
-|   ├── plot_score_std.py 
-|   ├── plot_config_compare.py 
-|   └── verbosity_relation.py  
+│   ├── run_score/                     # instability scores
+│   │   ├── run_features.csv           # file of main results
+│   │   └── run_scores.csv             # file of main results with final scores
+│   ├── plot_concept_levels.py         # code for analysis (same for below)
+│   ├── extract_run_features.py       
+│   ├── score_runs.py        
+│   ├── plot_score_std.py 
+│   ├── plot_config_compare.py 
+│   └── verbosity_relation.py
+├── README.md
+└── LICENSE
 ```
 <!-- TODO(structure): update to match the real tree (`tree -L 2`). -->
 
