@@ -79,7 +79,7 @@ The code in *analysis/* is used to analyse the simulation outcomes (several exam
 
 ```bash
 # Preliminary result processing
-python plot_concept_levels.py --metrics-dir .metrics   # Section 1，含 macro2_concept_levels.png
+python plot_concept_levels.py --metrics-dir .metrics   # create macro_concept_levels.png
 python extract_run_features.py                         # add the parameters of model、temperature、macro2_concept 
 # Final score calculation
 python score_runs.py                        # generate score_std.csv for gpt-4o (default)
